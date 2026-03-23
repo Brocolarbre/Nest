@@ -102,13 +102,14 @@ void CommandProcessor::processBuildClear()
 #endif
 }
 
-void CommandProcessor::processLinesCount()
+void CommandProcessor::processLinesCount(const std::optional<std::string>& root)
 {
+	std::string arguments(root.has_value() ? std::string(" --root ") + root.value() : "");
 #ifdef _WIN32
-	if (std::system("cmd /c .\\scripts\\windows\\count_lines.bat") == -1)
+	if (std::system(std::string("cmd /c .\\scripts\\windows\\count_lines.bat" + arguments).c_str()) == -1)
 		std::cerr << "count_lines.bat failed" << std::endl;
 #else
-	if (std::system("bash ./scripts/linux/count_lines.sh") == -1)
+	if (std::system(std::string("bash ./scripts/linux/count_lines.sh" + arguments).c_str()) == -1)
 		std::cerr << "count_lines.sh failed" << std::endl;
 #endif
 }
