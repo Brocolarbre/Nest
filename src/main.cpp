@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 	CLI::App* environmentCommand = cli.add_subcommand("environment", "Perform an operation on the environment");
 	CLI::App* environmentSetCommand = environmentCommand->add_subcommand("set", "Install external dependencies");
 	environmentSetCommand->add_option("--vcpkg-path", environmentSetCommandVcpkgPath, "Path to an existing vcpkg installation directory");
-	environmentSetCommand->add_flag("--skip-vcpkg", environmentSetCommandVcpkgPath, "Skip vcpkg and external depenndencies installation");
+	environmentSetCommand->add_flag("--skip-vcpkg", environmentSetCommandSkipVcpkg, "Skip vcpkg and external depenndencies installation");
 	CLI::App* environmentResetCommand = environmentCommand->add_subcommand("reset", "Uninstall external dependencies");
 	environmentCommand->require_subcommand(1);
 
