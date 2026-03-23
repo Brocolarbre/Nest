@@ -101,3 +101,14 @@ void CommandProcessor::processBuildClear()
         std::cerr << "clear_build.sh failed" << std::endl;
 #endif
 }
+
+void CommandProcessor::processLinesCount()
+{
+#ifdef _WIN32
+	if (std::system("cmd /c .\\scripts\\windows\\count_lines.bat") == -1)
+		std::cerr << "count_lines.bat failed" << std::endl;
+#else
+	if (std::system("bash ./scripts/linux/count_lines.sh") == -1)
+		std::cerr << "count_lines.sh failed" << std::endl;
+#endif
+}

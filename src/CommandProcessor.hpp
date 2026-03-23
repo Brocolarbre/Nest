@@ -18,4 +18,5 @@ public:
 	static void processWorkspaceSet(const std::optional<std::string>& target);
 	static void processWorkspaceReset();
 	static void processBuildClear();
+	static void processLinesCount();
 };

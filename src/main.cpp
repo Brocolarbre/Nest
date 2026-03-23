@@ -39,6 +39,10 @@ int main(int argc, char* argv[])
 	CLI::App* buildClearCommand = buildCommand->add_subcommand("clear", "Remove the build directory");
 	buildCommand->require_subcommand(1);
 
+	CLI::App* linesCommand = cli.add_subcommand("lines", "Perform an operation on the lines");
+	CLI::App* linesCountCommand = linesCommand->add_subcommand("count", "Count source files lines");
+	linesCommand->require_subcommand(1);
+
 	CLI11_PARSE(cli, argc, cli.ensure_utf8(argv));
 
 	if (initCommand->parsed())
@@ -68,6 +72,10 @@ int main(int argc, char* argv[])
 	else if (buildClearCommand->parsed())
 	{
 		CommandProcessor::processBuildClear();
+	}
+	else if (linesCountCommand->parsed())
+	{
+		CommandProcessor::processLinesCount();
 	}
 
 	return 0;
