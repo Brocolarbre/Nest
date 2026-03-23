@@ -44,7 +44,7 @@ void CommandProcessor::processEnvironmentSet(bool skipVcpkg, const std::optional
 {
 	std::string arguments;
 	if (!skipVcpkg)
-		arguments = "--skip-vcpkg";
+		arguments = " --skip-vcpkg";
 	else if (vcpkgPath.has_value())
 		arguments = std::string(" --vcpkg-path \"") + std::filesystem::path(vcpkgPath.value()).string() + "\"";
 
