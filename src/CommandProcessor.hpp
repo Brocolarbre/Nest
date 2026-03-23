@@ -13,7 +13,7 @@ class CommandProcessor
 {
 public:
 	static void processInit(ProjectType projectType);
-	static void processEnvironmentSet(const std::optional<std::string>& vcpkgPath);
+	static void processEnvironmentSet(bool skipVcpkg, const std::optional<std::string>& vcpkgPath);
 	static void processEnvironmentReset();
 	static void processWorkspaceSet(const std::optional<std::string>& target);
 	static void processWorkspaceReset();

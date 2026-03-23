@@ -40,9 +40,14 @@ void CommandProcessor::processInit(ProjectType projectType)
 	std::cout << " Done." << std::endl;
 }
 
-void CommandProcessor::processEnvironmentSet(const std::optional<std::string>& vcpkgPath)
+void CommandProcessor::processEnvironmentSet(bool skipVcpkg, const std::optional<std::string>& vcpkgPath)
 {
-	std::string arguments(vcpkgPath.has_value() ? std::string(" --vcpkg-path \"") + std::filesystem::path(vcpkgPath.value()).string() + "\"" : "");
+	std::string arguments;
+	if (!skipVcpkg)
+		arguments = "--skip-vcpkg";
+	else if (vcpkgPath.has_value())
+		arguments = std::string(" --vcpkg-path \"") + std::filesystem::path(vcpkgPath.value()).string() + "\"";
+
 #ifdef _WIN32
 	if (std::system(std::string("cmd /c .\\scripts\\windows\\set_environment.bat" + arguments).c_str()) == -1)
         std::cerr << "set_environment.bat failed" << std::endl;

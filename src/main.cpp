@@ -18,11 +18,12 @@ int main(int argc, char* argv[])
 	initCommandOptions->require_option(1);
 
 	std::string environmentSetCommandVcpkgPath;
-	std::string environmentSetCommandPremakePath;
+	bool environmentSetCommandSkipVcpkg = false;
 
 	CLI::App* environmentCommand = cli.add_subcommand("environment", "Perform an operation on the environment");
 	CLI::App* environmentSetCommand = environmentCommand->add_subcommand("set", "Install external dependencies");
 	environmentSetCommand->add_option("--vcpkg-path", environmentSetCommandVcpkgPath, "Path to an existing vcpkg installation directory");
+	environmentSetCommand->add_flag("--skip-vcpkg", environmentSetCommandVcpkgPath, "Skip vcpkg and external depenndencies installation");
 	CLI::App* environmentResetCommand = environmentCommand->add_subcommand("reset", "Uninstall external dependencies");
 	environmentCommand->require_subcommand(1);
 
@@ -53,7 +54,7 @@ int main(int argc, char* argv[])
 	else if (environmentCommand->parsed())
 	{
 		if (environmentSetCommand->parsed())
-			CommandProcessor::processEnvironmentSet(environmentSetCommandVcpkgPath.empty() ? std::nullopt : std::optional(environmentSetCommandVcpkgPath));
+			CommandProcessor::processEnvironmentSet(environmentSetCommandSkipVcpkg, environmentSetCommandVcpkgPath.empty() ? std::nullopt : std::optional(environmentSetCommandVcpkgPath));
 		else if (environmentResetCommand->parsed())
 			CommandProcessor::processEnvironmentReset();
 	}
