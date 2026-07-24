@@ -17,7 +17,8 @@ project "Application"
 	
 	filter "options:shared-library"
 		disablewarnings {
-			"4251"
+			"4251",
+			"4275"
 		}
 	
 	filter "not options:shared-library"
