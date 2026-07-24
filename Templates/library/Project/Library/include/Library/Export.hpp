@@ -1,15 +1,13 @@
 #pragma once
 
-#ifdef _WIN32
-	#ifdef LIBRARY_STATIC
-		#define LIBRARY_EXPORT
+#if defined(_WIN32)
+	#if defined(LIBRARY_STATIC)
+		#define LIBRARY_API
+	#elif defined(LIBRARY_BUILD)
+		#define LIBRARY_API __declspec(dllexport)
 	#else
-		#ifdef LIBRARY_EXPORT
-			#define LIBRARY_EXPORT __declspec(dllexport)
-		#else
-			#define LIBRARY_EXPORT __declspec(dllimport)
-		#endif
+		#define LIBRARY_API __declspec(dllimport)
 	#endif
-#elif __linux__
-	#define LIBRARY_EXPORT
+#else
+	#define LIBRARY_API __attribute__((visibility("default")))
 #endif

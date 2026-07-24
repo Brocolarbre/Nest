@@ -15,6 +15,11 @@ project "Application"
 		"Library"
 	}
 	
+	filter "options:shared-library"
+		disablewarnings {
+			"4251"
+		}
+	
 	filter "not options:shared-library"
 		links {
 

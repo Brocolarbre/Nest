@@ -19,7 +19,11 @@ project "Library"
 		}
 		
 		defines	{
-			"LIBRARY_EXPORT"
+			"LIBRARY_BUILD"
+		}
+		
+		disablewarnings {
+			"4251"
 		}
 		
 	filter "not options:shared-library"
