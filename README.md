@@ -97,12 +97,6 @@ The `set_workspace` can be modified to pass arguments to the workspace Premake s
 
 ## Setup
 
-### Binaries
-
-To use Nest, simply download the executable file matching the desired platform.
-
-### Building Nest
-
 To build Nest, follow these steps :
 - Download the [Nest repository](https://github.com/Brocolarbre/Nest.git)
 - Download [Premake](https://premake.github.io/)
